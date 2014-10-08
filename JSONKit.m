@@ -2596,7 +2596,7 @@ static int jk_encode_add_atom_to_buffer(JKEncodeState *encodeState, void *object
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-objc-pointer-introspection"
-  BOOL   workAroundMacOSXABIBreakingBug = (JK_EXPECT_F(((NSUInteger)object) & 0x1))     ? YES  : NO;
+  BOOL   workAroundMacOSXABIBreakingBug = YES; // This no longer works on 64 bit iOS: (JK_EXPECT_F(((NSUInteger)object) & 0x1))     ? YES  : NO;
 #pragma clang diagnostic pop
   void  *objectISA                      = (JK_EXPECT_F(workAroundMacOSXABIBreakingBug)) ? NULL : *((void **)objectPtr);
   if(JK_EXPECT_F(workAroundMacOSXABIBreakingBug)) { goto slowClassLookup; }
